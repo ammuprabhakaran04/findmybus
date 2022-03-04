@@ -1,0 +1,43 @@
+{% include 'publicheader.html' %}
+<enter>
+	<h1>REGISTER</h1>
+	<form method="post">
+		<table border="2">
+			<tr>
+				<td>first_name</td>
+				<td><input type="text" name="first_name"></td>
+			</tr>
+				<td>last_name</td>
+				<td><input type="text" name="last_name"></td>
+			</tr>
+			<tr>
+				<td>age</td>
+				<td><input type="number" name="age"></td>
+			</tr>
+			<tr>
+				<td>gender</td>
+				<td><input type="radio" name="gender" value="male">male<input type="radio" name="gender" value="female">female</td>
+			</tr>
+			<tr>
+				<td>phone</td>
+				<td><input type="number" name="phone"></td>
+			</tr>
+			<tr>
+				<td>email</td>
+				<td><input type="email" name="email"></td>
+			</tr>
+			<tr>
+				<td>username</td>
+				<td><input type="text" name="username"></td>
+			</tr>
+			<tr>
+				<td>password</td>
+				<td><input type="password" name="password"></td>
+			</tr>
+			<tr>
+				<td align="center" colspan="2"><input type="submit" name="submit"></td>
+			</tr>
+		</table>
+	</form>
+</enter>
+{% include 'footer.html' %}

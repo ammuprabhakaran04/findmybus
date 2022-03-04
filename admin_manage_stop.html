@@ -1,0 +1,69 @@
+{% include 'adminheader.html' %}
+<!-- <?php 
+if(isset($_POST['stops'])){
+	extract($_POST);
+	
+		
+		$q1="insert into stop values(null,'$trp_id','$place','$stopss')";
+		insert($q1);
+		alert("Stop Added");
+
+
+	return redirect("admin_manage_stop.php?trp_id=$trp_id&bs_id=$bs_id&stop=$stop");
+}
+ ?> -->
+
+<form method="post">
+	<h2>Stop details</h2>
+	<table>
+
+		<tr>
+			<th>Stop Name</th>
+			<td><select name="place">
+				<option selected=""> Select Location </option>
+				{% for row in data['places']%}
+					<option value="{{ row['place_id'] }}">{{row['place_name'] }}</option>
+				{% endfor %}
+			</select></td>
+		</tr>
+		<tr>
+				<th>Stop Number </th>
+				<td><select name="stopss">
+				{{ data['stops']}}
+					{% for row in data['stops'] %}
+					{{row}}
+					<option value="{{row}}">{{row}}</option>
+					{% endfor %}
+
+				</select>
+				</td> 
+			</tr>
+		
+					<tr>
+					{% if data['stops'] %}
+					<td colspan="2" align="center">
+							<input type="submit" name="stops" value="ADD" class="btn btn-primary">
+					
+					</td> 
+					{% endif %}
+							</tr>
+
+
+	</table>
+	<table>
+		<h2>View Stops</h2>
+		<tr>
+			<th>Stop Place</th>
+			<th>Stops</th>
+		</tr>
+	{% for row1 in data['stopdetail'] %}
+				<tr>
+					<td>{{row1['place_name'] }}</td>
+					<td>{{row1['stopnum']}}</td>
+					
+				</tr>
+		{% endfor %}
+	</table>
+</form>
+
+{% include 'footer.html' %}

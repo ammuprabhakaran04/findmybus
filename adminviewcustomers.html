@@ -1,0 +1,32 @@
+{% include 'adminheader.html' %}
+<div class="banner-1 ">
+	<div class="container">
+		
+	</div>
+</div>
+
+<center>
+	<br><br><br>
+<table class="table" style="width: 900px;">
+	<h2>Customer Details</h2><br>
+		<tr>
+			<th>first_name</th>
+			<th>last_name</th>
+			<th>age</th>
+			<th>gender</th>
+			<th>phone</th>
+			<th>email</th>
+		</tr>
+		{% for row in data['customers'] %}
+		<tr>
+			<td>{{row['first_name']}}</td>
+			<td>{{row['last_name']}}</td>
+			<td>{{row['age']}}</td>
+			<td>{{row['gender']}}</td>
+			<td>{{row['phone']}}</td>
+			<td>{{row['email']}}</td>
+		</tr>
+		{%endfor %}
+</table>
+</center>
+{% include 'footer.html' %}

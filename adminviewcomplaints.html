@@ -1,0 +1,35 @@
+{% include 'adminheader.html' %}
+
+<div class="banner-1 ">
+	<div class="container">
+		
+	</div>
+</div>
+
+<center>
+<form method="post">
+<table class="table" style="width: 700px;">
+	<br><br>
+	<h2>Complaints</h2><br>
+		<tr>
+			<th>description</th>
+			<th>complaint_date</th>
+			<th>reply</th>
+		</tr>
+		{% for row in data['complaints'] %}
+		<tr>
+			<td>{{row['description']}}</td>
+			<td>{{row['complaint_date']}}</td>
+			{% if row['reply']=="NA"%} 
+					
+					<td><input type="text" class="form-control" required name="reply{{loop.index}}"><input type="submit" class="btn btn-primary btn-sm" name="submit{{loop.index}}" value="submit"></td>
+
+					{% else %}
+					<td>{{row['reply']}}</td>
+					{% endif %}
+		</tr>
+		{%endfor %}
+</table>
+</form>
+</center>
+{% include 'footer.html' %}

@@ -1,0 +1,86 @@
+{% include 'adminheader.html' %}
+
+ <div class="banner">
+	<div class="container">
+		
+
+<br><br><br><br>
+	<form method="post">
+	
+	<h2 style="color: #fff;font-size: 40px;">Trips</h2>
+	<table   class="table" style="width:500px;color : #fff;">
+		<tr>
+			<th>Bus Name</th>
+			<td><input type="text" class="form-control" name="bname" value="{{data['selbus'][0]['bus_name']}}"></td>
+		</tr>
+		<tr>
+			<th>Route Name</th>
+			<td>
+				<select name="rname" class="form-control">
+					<option selected readonly>selected</option> 
+					{% for row in data['root'] %}
+					<option value="{{row['route_id']}}">{{row['route_name']}}</option>
+					{% endfor %}
+				</select>
+			</td>
+			
+		</tr>
+		<tr>
+			<th>Starting Time</th>
+			<td><input type="time" class="form-control" name="stime" ></td>
+		</tr>
+		<tr>
+			<th>Ending Time</th>
+			<td><input type="time" class="form-control" name="etime" ></td>
+		</tr>
+		<tr>
+			<th>Stops</th>
+			<td><input type="number" class="form-control" name="stops" ></td>
+		</tr>
+
+
+			
+			<td colspan="2" align="center"><input type="submit" class="btn btn-success" name="submit" value="submit"></td>
+		</tr>
+	</table>
+	
+	</form>
+	
+	</div>
+	</div>
+
+
+	
+	<center>
+	<table  align="center" class="table" style="width:800px">
+		<tr>
+			<th>Bus Name</th>
+			<th>Route Name</th>
+			<th>Starting Place</th>
+			<th>Ending Place</th>
+			<th>Starting Time</th>
+			<th>Ending Time</th>
+		</tr>
+		<tbody>
+			{% for row in data['viewtrips'] %}
+			<tr>
+				<td>{{row['bus_name']}}</td>
+				<td>{{row['route_name']}}</td>
+				<td>{{row['splace']}}</td>
+				<td>{{row['eplace']}}</td>
+				<td>{{row['stime']}}</td>
+				<td>{{row['etime']}}</td>
+
+				<td><a class="btn btn-primary" href="admin_manage_stop?tid={{ row['trip_id'] }}&bs_id={{ data['busid'] }}&stop={{ row['stops'] }}">Manage Stops</a></td>
+				<td><a href="?action=delete&id1={{data['busid']}}&pid={{row['trip_id']}}">delete</a></td>
+
+
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</center>
+
+{% include 'footer.html' %}
+
+

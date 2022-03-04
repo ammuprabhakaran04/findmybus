@@ -1,0 +1,110 @@
+{% include 'adminheader.html' %}
+
+<div class="banner">
+	<div class="container">
+		<form method="post">
+	<center>
+		<br><br><br><br>
+	<h2 style="color: #fff;font-size: 40px;">Routes</h2><br>
+	{% if data['updates'] %}
+	<table  align="center" class="table" style="width:500px;color: #fff;">
+		<tr>
+			<th>Route Name</th>
+			<td><input type="text" class="form-control" name="rname" value="{{ data['updates'][0]['route_name']}}"></td>
+		</tr>
+		<tr>
+			<th>Starting Place</th>
+			<td>
+				<select name="sname" class="form-control">
+					{% for row in data['uplaces1'] %}
+					<option value="{{row['place_id']}}">{{row['place_name']}}</option>	
+					{% endfor %}				
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>Ending Place</th>
+			<td>
+				<select name="ename" class="form-control">
+					{% for row in data['uplaces2'] %}
+					<option value="{{row['place_id']}}">{{row['place_name']}}</option>
+					{% endfor %}					
+				</select>
+			</td>
+		</tr>
+		<tr>
+			
+			<td colspan="2" align="center"><input type="submit" class="btn btn-warning" name="update" value="Update"></td>
+		</tr>
+	</table>
+	{% else %}
+	<table  align="center" class="table" style="width:500px;color: #fff;">
+		<tr>
+			<th>Route Name</th>
+			<td><input type="text" class="form-control" name="rname"></td>
+		</tr>
+		<tr>
+			<th>Starting Place</th>
+			<td>
+				<select name="sname" class="form-control">
+					<option selected readonly>Select</option>
+					{% for row in data['places1'] %}
+					<option value="{{row['place_id']}}">{{row['place_name']}}</option>	
+					{% endfor %}				
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>Ending Place</th>
+			<td>
+				<select name="ename" class="form-control">
+					<option selected readonly>Select</option>
+					{% for row in data['places2'] %}
+					<option value="{{row['place_id']}}">{{row['place_name']}}</option>
+					{% endfor %}					
+				</select>
+			</td>
+		</tr>
+		<tr>
+			
+			<td colspan="2" align="center"><input type="submit" class="btn btn-success" name="submit" value="submit"></td>
+		</tr>
+	</table>
+</center>
+</form>
+	{% endif %}
+	</div>
+</div>
+
+
+
+	<br>
+	<br>
+	<br>
+	<form>
+	<center>
+
+	<table  align="center" class="table" style="width:500px">
+		<tr>
+			<th>Route Name</th>
+			<th>Starting Place</th>
+			<th>Ending Place</th>
+		</tr>
+		<tbody>
+			{% for row in data['viewroute'] %}
+			<tr>
+				<td>{{row['route_name']}}</td>
+				<td>{{row['splace']}}</td>
+				<td>{{row['eplace']}}</td>
+				<td>
+					<a href="?action=update&pid={{row['route_id']}}">Update</a>
+					<a href="?action=delete&pid={{row['route_id']}}">delete</a>
+				</td> 
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	</center>
+
+</form>
+{% include 'footer.html' %}

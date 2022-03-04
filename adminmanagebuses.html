@@ -1,0 +1,80 @@
+{% include 'adminheader.html' %}
+
+<div class="banner-1 ">
+	<div class="container">
+	<form method="post">
+	<center>
+		<br><br><br><br>
+	{% if data['updates'] %}
+		<h2 style="color: #fff;font-size: 40px;">Update Buses</h2><br>
+
+	<table  align="center" class="table" style="width:500px;color: #fff;">
+		<tr>
+			<th>bus_name </th>
+			<td><input type="text" class="form-control" name="bus_name" value="{{data['updates'][0]['bus_name']}}"></td>
+		</tr>
+		<tr>
+			<th>registration_number </th>
+			<td><input type="text" class="form-control" name="registration_number" value="{{data['updates'][0]['reg_number']}}"></td>
+
+		</tr>
+		<tr>
+			<th>no of seats</th>
+			<td><input type="text" class="form-control" name="nos" value="{{data['updates'][0]['noofseats']}}"></td>
+
+		</tr> 
+		<tr>
+			
+			<td colspan="2" align="center"><input type="submit" class="btn btn-warning" name="update" value="Update"></td>
+		</tr>
+	</table>
+	{% else %}
+			<h2 style="color: #fff;font-size: 40px;"> Buses</h2><br>
+
+	<table  align="center" class="table" style="width:500px;color: #fff;">
+		<tr>
+			<th>bus_name </th>
+			<td><input type="text" class="form-control" name="bus_name"></td>
+		</tr>
+		<tr>
+			<th>registration_number </th>
+			<td><input type="text" class="form-control" name="registration_number"></td>
+
+		</tr>
+		<tr>
+			<th>no of seats</th>
+			<td><input type="text" class="form-control" name="nos"></td>
+
+		</tr>
+		<tr>
+			
+			<td colspan="2" align="center"><input type="submit" class="btn btn-success" name="submit" value="submit"></td>
+		</tr>
+	</table>
+</center>
+</form>
+	{% endif %}
+	</div>
+</div>
+<center>
+	<br><br><br>
+<table class="table" style="width: 900px;">
+		<tr>
+			<th>bus_name</th>
+			<th>registration_number</th>
+			<th>no of seats</th>
+		</tr>
+		{% for row in data['buses'] %}
+		<tr>
+			<td>{{row['bus_name']}}</td>
+			<td>{{row['reg_number']}}</td>
+			<td>{{row['noofseats']}}</td>
+			<td><a href="?action=delete&pid={{row['bus_id']}}">delete</a></td>
+			<td><a href="?action=update&pid={{row['bus_id']}}">update</a></td>
+			<td><a class="btn btn-primary" href="admintrips?id1={{ row['bus_id']}}">Manage Trips</td>
+				
+		</tr>
+		{%endfor %}
+	</table>
+</center>
+{% include 'footer.html' %}
